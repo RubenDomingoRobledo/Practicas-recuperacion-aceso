@@ -1,0 +1,2 @@
+Esto es una prueba usando BufferedWriter
+Seguimos usando BufferedWriter

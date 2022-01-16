@@ -60,7 +60,7 @@ public class RandomAccess{
             }
         } 
         catch (EOFException e) {
-            System.out.println("Fin de fichero");
+            System.out.println("Fin de fichero\n");
         } 
         catch (IOException ex) {
             System.out.println(ex.getMessage());
