@@ -128,7 +128,7 @@ public class GestionEquipos {
 			dao.Batch(jugadores1, 1);
 			dao.Batch(jugadores2, 2);
 			dao.Batch(jugadores3, 3);
-			System.out.println("Equipos insertados\n");
+			System.out.println("Equipos insertados con sus entenadores, competiciones y jugadores correspondientes\n");
 			
 			System.out.println("2. Mostrar equipos, entrenadores, competiciones y jugadores");
 			System.out.println("Datos del equipo: \n"+ dao.readEquipo(1));

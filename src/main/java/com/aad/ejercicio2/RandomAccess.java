@@ -63,7 +63,7 @@ public class RandomAccess{
             System.out.println("Fin de fichero\n");
         } 
         catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("Error de entrada o de salida");
         }
     }
 }

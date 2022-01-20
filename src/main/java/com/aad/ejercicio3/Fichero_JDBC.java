@@ -20,7 +20,7 @@ public class Fichero_JDBC {
 	    String parAdic = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	    String urlConnection = "jdbc:mysql://" + host + ":" + port + "/" + basedatos + parAdic;
 	    String user = "root";
-	    String pwd = "Alcobendas99*";
+	    String pwd = "root";
 	    
 	    try { 
             File fichero = new File("ficheros/quijote.txt");
@@ -74,7 +74,7 @@ public class Fichero_JDBC {
             conn.close();
 	    } 
 	    catch (SQLException e) {
-	    	e.printStackTrace();
+	    	System.out.println("Error SQL");
 	    } 
 	    catch (FileNotFoundException e){
 	   	  System.out.println("No se ha encontrado el archivo");
