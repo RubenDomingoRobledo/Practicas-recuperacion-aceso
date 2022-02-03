@@ -52,8 +52,11 @@ public class EquipoDAO_ implements EquipoDAO {
 		boolean update=false;		
 		try {
 			Connection conn=Conexion.conectar();
-			Statement stm=conn.createStatement();
-			stm.execute("UPDATE equipo SET nombre='"+equipo.getNombre()+"'" +" WHERE id_Equipo="+equipo.getId_Equipo());
+			PreparedStatement stm = conn.prepareStatement("UPDATE equipo SET nombre =? WHERE id_Equipo = ?");
+			stm.setString(1, equipo.getNombre());
+			stm.setInt(2, equipo.getId_Equipo());
+			
+			stm.executeUpdate();
 			update=true;
 			stm.close();
 			conn.close();
@@ -69,13 +72,29 @@ public class EquipoDAO_ implements EquipoDAO {
 		boolean eliminar=false;	
 		try {
 			Connection conn=Conexion.conectar();
-			Statement stm=conn.createStatement();
-			stm.executeUpdate("DELETE FROM equipo WHERE id_Equipo= "+ id);
-			stm.executeUpdate("DELETE FROM entrenador WHERE id_Equipo= "+ id);
-			stm.executeUpdate("DELETE FROM jugador WHERE id_Equipo= "+ id);
-			stm.executeUpdate("DELETE FROM competicion WHERE id_Equipo= "+ id);
+			
+			PreparedStatement stm = conn.prepareStatement("DELETE FROM equipo WHERE id_Equipo= ?");
+			stm.setInt(1, id);
+			stm.executeUpdate();
+			
+			PreparedStatement stm2 = conn.prepareStatement("DELETE FROM entrenador WHERE id_Equipo= ?");
+			stm2.setInt(1, id);
+			stm2.executeUpdate();
+			
+			PreparedStatement stm3 = conn.prepareStatement("DELETE FROM jugador WHERE id_Equipo= ?");
+			stm3.setInt(1, id);
+			stm3.executeUpdate();
+			
+			PreparedStatement stm4 = conn.prepareStatement("DELETE FROM competicion WHERE id_Equipo= ?");
+			stm4.setInt(1, id);
+			stm4.executeUpdate();
+	
 			eliminar=true;
 			stm.close();
+			stm2.close();
+			stm3.close();
+			stm4.close();
+			
 			conn.close();
 		} 
 		catch (SQLException e) {
@@ -88,8 +107,9 @@ public class EquipoDAO_ implements EquipoDAO {
 		Equipo equipo = new Equipo();
 		try {
 			Connection conn=Conexion.conectar();
-			Statement stm=conn.createStatement();
-			ResultSet rs= stm.executeQuery("SELECT * FROM equipo WHERE id_Equipo ='"+id+"'");
+			PreparedStatement stm = conn.prepareStatement("SELECT * FROM equipo WHERE id_Equipo =?");
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
 				equipo.setId_Equipo(id);
 				equipo.setNombre(rs.getString("nombre"));
@@ -109,8 +129,9 @@ public class EquipoDAO_ implements EquipoDAO {
 		Entrenador entrenador = new Entrenador();
 		try {
 			Connection conn=Conexion.conectar();
-			Statement stm=conn.createStatement();
-			ResultSet rs= stm.executeQuery("SELECT * FROM entrenador WHERE id_Equipo ='"+id_equipo+"'");
+			PreparedStatement stm = conn.prepareStatement("SELECT * FROM entrenador WHERE id_Equipo =?");
+			stm.setInt(1, id_equipo);
+			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
 				entrenador.setId_Entrenador(rs.getInt("id_entrenador"));
 				entrenador.setNombre(rs.getString("nombre"));
@@ -130,8 +151,9 @@ public class EquipoDAO_ implements EquipoDAO {
 		List<Jugador> jugadores = new ArrayList<Jugador>();
 		try {
 			Connection conn=Conexion.conectar();
-			Statement stm=conn.createStatement();
-			ResultSet rs= stm.executeQuery("SELECT * FROM jugador WHERE id_Equipo ='"+id_equipo+"'");
+			PreparedStatement stm = conn.prepareStatement("SELECT * FROM jugador WHERE id_Equipo =?");
+			stm.setInt(1, id_equipo);
+			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
 				Jugador jugador = new Jugador();
 				jugador.setId_Jugador(rs.getInt("id_jugador"));
@@ -154,8 +176,9 @@ public class EquipoDAO_ implements EquipoDAO {
 		List<Competicion> competiciones = new ArrayList<Competicion>();
 		try {
 			Connection conn=Conexion.conectar();
-			Statement stm=conn.createStatement();
-			ResultSet rs= stm.executeQuery("SELECT * FROM competicion WHERE id_Equipo ='"+id_equipo+"'");
+			PreparedStatement stm = conn.prepareStatement("SELECT * FROM competicion WHERE id_Equipo =?");
+			stm.setInt(1, id_equipo);
+			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
 				Competicion competicion = new Competicion();
 				competicion.setId_Competicion(rs.getInt("id_competicion"));

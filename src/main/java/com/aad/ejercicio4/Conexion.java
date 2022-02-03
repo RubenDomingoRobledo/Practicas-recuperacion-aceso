@@ -14,7 +14,7 @@ public class Conexion {
 	    String parAdic = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	    String urlConnection = "jdbc:mysql://" + host + ":" + port + "/" + basedatos + parAdic;
 	    String user = "root";
-	    String pwd = "Alcobendas99*";
+	    String pwd = "root";
 	    
 		try {
 			con = DriverManager.getConnection(urlConnection, user, pwd);

@@ -74,7 +74,8 @@ public class Fichero_JDBC {
             conn.close();
 	    } 
 	    catch (SQLException e) {
-	    	System.out.println("Error SQL");
+	    	System.out.println("Error SQL"+e.getErrorCode()+"mensaje: "+e.getMessage() );
+	    	e.printStackTrace();
 	    } 
 	    catch (FileNotFoundException e){
 	   	  System.out.println("No se ha encontrado el archivo");
