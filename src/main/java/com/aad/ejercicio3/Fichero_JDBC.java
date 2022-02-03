@@ -74,14 +74,16 @@ public class Fichero_JDBC {
             conn.close();
 	    } 
 	    catch (SQLException e) {
-	    	System.out.println("Error SQL"+e.getErrorCode()+"mensaje: "+e.getMessage() );
+	    	System.out.println("Error SQL "+e.getErrorCode()+". Mensaje: "+e.getMessage() );
 	    	e.printStackTrace();
 	    } 
 	    catch (FileNotFoundException e){
-	   	  System.out.println("No se ha encontrado el archivo");
+	   	  System.out.println("No se ha encontrado el archivo. Mensaje: " + e.getMessage());
+	   	  e.printStackTrace();
 	    } 
 	    catch (IOException e){
-	    	System.out.println("Error de entrada y de salida");
+	    	System.out.println("Error de entrada y de salida. Mensaje " + e.getMessage());
+	    	e.printStackTrace();
 	   	}
 	    catch (Exception e) {
 	    	e.printStackTrace();
